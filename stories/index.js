@@ -7,20 +7,15 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
-
 import DayListItem from "components/DayListItem"
-
 import DayList from "components/DayList"
-
 import InterviewerListItem from "components/InterviewerListItem"
-
 import InterviewerList from "components/InterviewerList"
-
 import Appointment from "components/Appointment/index"
-
 import Header from 'components/Appointment/Header'
-
 import Empty from 'components/Appointment/Empty'
+import Show from 'components/Appointment/Show'
+import Confirm from 'components/Appointment/Confirm'
 
 storiesOf("Button", module)
   .addParameters({
@@ -145,16 +140,24 @@ storiesOf("Appointment", module)
   .add("Appointment", () => <Appointment />)
   .add("Appointment with Time", () => <Appointment time="12pm" />);
 
-  storiesOf("Header", module)
+storiesOf("Header", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("header", () => <Header />)
-  .add("header", () => <Header time="12pm"/>); //with time
+  .add("header", () => <Header time="12pm" />); //with time
 
-  storiesOf("Empty", module)
+storiesOf("Empty", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("Empty", () => <Empty />)
-  .add("Clickable", () => <Empty onAdd={action("onAdd")} />); // complete this
+  .add("Clickable", () => <Empty onAdd={action("onAdd")} />);
+
+storiesOf("Show", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Show", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" /> )
+  .add("Edit", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" onEdit={action("onEdit")} /> )
+  .add("Delete", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" onDelete={action("onDelete")} /> );
