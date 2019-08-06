@@ -16,6 +16,9 @@ import Header from 'components/Appointment/Header'
 import Empty from 'components/Appointment/Empty'
 import Show from 'components/Appointment/Show'
 import Confirm from 'components/Appointment/Confirm'
+import Status from 'components/Appointment/Status'
+import Error from 'components/Appointment/Error'
+
 
 storiesOf("Button", module)
   .addParameters({
@@ -158,6 +161,27 @@ storiesOf("Show", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
-  .add("Show", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" /> )
-  .add("Edit", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" onEdit={action("onEdit")} /> )
-  .add("Delete", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" onDelete={action("onDelete")} /> );
+  .add("Show", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" />)
+  .add("Edit", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" onEdit={action("onEdit")} />)
+  .add("Delete", () => <Show interviewer={interviewers[0]} student="Lydia Miller-Jones" onDelete={action("onDelete")} />);
+
+storiesOf("Confirm", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Confirm", () => <Confirm message="Delete the appointment?" />)
+  .add("Click confirm", () => <Confirm message="Delete the appointment?" onConfirm={action("onConfirm")} />)
+  .add("Click cancel", () => <Confirm message="Delete the appointment?" onCancel={action("onCancel")} />);
+
+storiesOf("Status", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Status", () => <Status message="Deleting" />);
+
+storiesOf("Error", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Error", () => <Error message="Could not delete appointment."/>)
+  .add("Click close", () => <Error message="Could not delete appointment." onClose={action("onClose")}/>);
