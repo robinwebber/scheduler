@@ -18,6 +18,7 @@ import Show from 'components/Appointment/Show'
 import Confirm from 'components/Appointment/Confirm'
 import Status from 'components/Appointment/Status'
 import Error from 'components/Appointment/Error'
+import Form from 'components/Appointment/Form'
 
 
 storiesOf("Button", module)
@@ -141,7 +142,24 @@ storiesOf("Appointment", module)
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("Appointment", () => <Appointment />)
-  .add("Appointment with Time", () => <Appointment time="12pm" />);
+  .add("Appointment with Time", () => <Appointment time="12pm" />)
+  .add("Appointment Empty", () => (
+    <React.Fragment>
+      <Appointment id={1} time="12pm" />
+      <Appointment id="last" time="1pm" />
+    </React.Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <React.Fragment>
+      <Appointment
+        id={1}
+        time="12pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+        interviewer={interviewer}
+      />
+      <Appointment id="last" time="1pm" />
+    </React.Fragment>
+  ));
 
 storiesOf("Header", module)
   .addParameters({
@@ -185,3 +203,11 @@ storiesOf("Error", module)
   })
   .add("Error", () => <Error message="Could not delete appointment."/>)
   .add("Click close", () => <Error message="Could not delete appointment." onClose={action("onClose")}/>);
+
+  storiesOf("Form", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Create", () => <Form interviewers={interviewers} onCancel={action("onCancel")} onSave={action("onSave")} />)
+  .add("Edit", () => <Form interviewers={interviewers} name="Lydia Miller-Jones" onCancel={action("onCancel")} interviewer={2} onSave={action("onSave")} />);
+  
