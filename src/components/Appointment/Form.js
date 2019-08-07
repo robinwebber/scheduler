@@ -4,11 +4,11 @@ import Button from 'components/Button'
 
 export default function Form(props) {
 
-  // console.log('props', props);
+  
 
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  console.log('name', name)
+  
 
   // reset function
   const reset = event => {
@@ -16,8 +16,8 @@ export default function Form(props) {
     setInterviewer(null);
     props.onCancel();
   }
-  console.log('interviewer', interviewer);
-  // propbably a filter thing to get the interviewer from the array
+  
+  
 
   return (
     <main className="appointment__card appointment__card--create">

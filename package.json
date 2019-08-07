@@ -47,5 +47,8 @@
       "<rootDir>/node_modules/"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "resolutions": {
+    "babel-jest": "24.7.1"
+  }
 }

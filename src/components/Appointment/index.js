@@ -6,7 +6,7 @@ import Show from 'components/Appointment/Show'
 
 export default function Appointment(props) {
 
-  console.log("---", props)
+ 
   return (
     <React.Fragment >
     <Header time={props.time}/>
